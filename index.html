@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Phaser Example Runner</title>
+        <meta name="viewport" content="initial-scale=1 maximum-scale=1 user-scalable=0 minimal-ui" />
+
+        <script src="phaser.2.6.2.min.js" type="text/javascript"></script>
+
+
+ 
+  
+        
+
+        <style>
+            body {
+              
+              position: absolute;
+              top: 0%;
+              left: 0%;
+              width: 100%;
+              height: 100%;
+              background-color: blue;
+
+            }
+
+#iddivtodorenderodontograma{
+
+    position: absolute;
+              top:10%;
+              left: 15%;
+              width:77%;
+              height: 80%;
+              background-color: rgb(43, 255, 0);
+
+}
+
+#divodontograma{
+    position: absolute;
+              top:0%;
+              left: 0%;
+              width:100%;
+              height: 100%;
+              background-color: rgb(255, 0, 0);
+
+
+
+}
+        </style>
+    </head>
+    <body onload="inicia();">
+
+
+        <dvi id="iddivtodorenderodontograma">
+
+                <div id="divodontograma"></div>
+
+        </dvi>
+   
+
+        <script type="text/javascript">
+
+//document.getElementById("iddivtodorenderodontograma").style.height;
+
+
+        var IDE_HOOK = false;
+        var VERSION = '2.6.2';
+
+
+var vw=window.innerWidth*0.77;
+var  vh=window.innerHeight*0.8;
+console.log(window.innerWidth);
+console.log(window.innerHeight);
+
+function inicia(){
+ //w=document.getElementById("iddivtodorenderodontograma").style.width;
+ //vh=document.getElementById("iddivtodorenderodontograma").style.height;
+
+}
+
+
+var handle1;
+var handle2;
+
+var line1;
+
+
+var dpx=vw/2;
+var dpy=vh/2;
+var spd;
+var arrayspd=[];
+var dientposx=sc*35;
+var deltadientposx=sc*37;
+var sc=vw/1182.72;///   1152;//0.000868055555555556*vw+0.0;
+//var  arrayobjscena={arraydientes:};
+        
+var game = new Phaser.Game(vw,vh, Phaser.AUTO, 'divodontograma', { preload: preload, create: create, update: update, render: render });
+
+function preload() {
+
+
+    game.load.image('d', './imagenes/d.png');
+
+}
+
+function create() {
+
+
+    game.stage.backgroundColor = "#ffffff";
+
+creleinemove();
+
+
+
+    for(var i=0; i<16;i=i+1){
+        cread(i);
+    }
+
+}
+
+
+function cread(i){
+    arrayspd.push({spd:game.add.sprite(sc*35+(37*2*sc*i), dpy, 'd'),id: arrayspd.length});
+    arrayspd[arrayspd.length-1].spd.anchor.set(0.5);
+    arrayspd[arrayspd.length-1].spd.scale.set(sc);
+    arrayspd[arrayspd.length-1].spd.inputEnabled = true;
+
+    arrayspd[arrayspd.length-1].spd.input.enableDrag(true);
+    console.log(arrayspd[arrayspd.length-1].spd.width);
+    console.log(arrayspd[arrayspd.length-1].spd.scale+" "+vw+" "+ 1152+"  "+sc);
+}
+
+
+function update() {
+
+
+
+
+}
+
+function render() {
+
+    game.debug.geom(line1);
+    game.debug.lineInfo(line1, 32, 32);
+
+}
+
+
+
+
+
+
+
+function creleinemove(){
+    handle1 = game.add.sprite(vw/2, vh*0, 'balls', 0);
+    handle1.anchor.set(0.5);
+    handle1.inputEnabled = true;
+    handle1.input.enableDrag(true);
+
+    handle2 = game.add.sprite(vw/2, vh*1, 'balls', 0);
+    handle2.anchor.set(0.5);
+    handle2.inputEnabled = true;
+    handle2.input.enableDrag(true);
+
+    line1 = new Phaser.Line(handle1.x, handle1.y, handle2.x, handle2.y);
+
+}
+
+
+        </script>
+
+    </body>
+</html>
